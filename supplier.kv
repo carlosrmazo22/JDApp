@@ -1,0 +1,136 @@
+#MainInterface:
+#AllScreens es el último que ha funcionado :)
+
+AllScreens:
+
+#ItemBox:
+
+
+<MainInterface>:
+    canvas.before:
+        Color:
+            rgba: .8509, .8588, .7647, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    orientation: "vertical"
+    MainScreenTop:
+    IDnumber:
+    Tracking:
+    ScrollViewItems:
+
+
+<MainScreenTop>:
+
+    Image:
+        source: "images/logopng.png"
+
+<IDnumber@BoxLayout>:
+    orientation: "horizontal"
+    Label:
+        color: 0, 0, 0, 1
+        text: "ID number: "
+    TextInput:
+        text: "ID number"
+        size_hint: 1, None
+        height: "80dp"
+        pos_hint: {"center_y": .5}
+
+<Tracking>:
+    orientation: "vertical"
+    Button:
+        text: "Confirmado"
+        on_press: root.on_button_click()
+        disabled: root.Confirmado
+    Button:
+        text: "Enviado"
+        on_press: root.on_button_click()
+        disabled: root.Enviado
+    Button:
+        text: "Entregado en almacén"
+        on_press: root.on_button_click()
+        disabled: root.Enviado2
+    Button:
+        text: "Entregado"
+        on_press: root.on_button_click()
+        disabled: root.Entregado
+
+<SelectedItems>:
+    cols: 2
+    ItemBox:
+    ItemBox:
+    ItemBox:
+    ItemBox:
+
+<ScrollViewItems@ScrollView>:
+    SelectedItems:
+        size_hint: 1, None
+        height: self.minimum_height
+
+<LoginScreen>:
+    canvas.before:
+        Color:
+            rgba: .8509, .8588, .7647, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "loginscreen"
+    BoxLayout:
+        padding: ("20dp", "40dp", "20dp", "40dp")
+        orientation: "vertical"
+        TextInput:
+            text: "Supplier ID"
+            size_hint: .5, None
+            height: "40dp"
+            pos_hint: {"center_x": .5}
+        TextInput:
+            text: "Password"
+            size_hint: .5, None
+            height: "40dp"
+            pos_hint: {"center_x": .5}
+        Button:
+            text: "Log In"
+            on_press: 
+                root.manager.current = "mainscreen"
+                root.manager.transition.direction = "left"
+            size_hint: .5, None
+            height: "40dp"
+            pos_hint: {"center_x": .5}
+            
+
+<MainScreen>:
+    name: "mainscreen"
+    MainInterface:
+    Button:
+        text: "Go Back"
+        pos_hint: {"top": .95}
+        size_hint: .1, .1
+        on_press: 
+            root.manager.current = "loginscreen"
+            root.manager.transition.direction = "right"
+
+
+
+    
+
+<AllScreens@ScreenManager>:
+    LoginScreen:
+    MainScreen:
+
+
+<Items>:
+    Button:
+        text: "lol"
+
+<ItemBox@BoxLayout>:
+    orientation: "vertical"
+    size_hint: 1, None
+    height: "100dp"
+    BoxLayout:
+        Image:
+            source: "images/logopng.png"
+        Label:
+            text: 
+                "Description\nDescription\nDescription"
+    ToggleButton:
